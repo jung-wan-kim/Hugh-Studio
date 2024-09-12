@@ -6,23 +6,17 @@ import { useState, useEffect } from 'react'
 export default function Home() {
   const projects = [
     {
-      title: "프로젝트 1",
-      description: "프로젝트 1에 대한 간단한 설명",
-      deployUrl: "https://project1-myusername.vercel.app",
-      imagePath: "/images/project1.jpg",
+      title: "OpenAI Chatbot",
+      description: "OpenAI API를 사용하여 만든 챗봇",
+      deployUrl: "https://nextjs-chat-ivory-chi.vercel.app/",
+      imagePath: "/images/chatbot.png",
     },
     {
-      title: "프로젝트 2",
-      description: "프로젝트 2에 대한 간단한 설명",
-      deployUrl: "https://project2-myusername.vercel.app",
-      imagePath: "/images/project2.jpg",
-    },
-    {
-      title: "프로젝트 3",
-      description: "프로젝트 3에 대한 간단한 설명",
-      deployUrl: "https://project3-myusername.vercel.app",
-      imagePath: "/images/project3.jpg",
-    },
+      title: "Carrot Market",
+      description: "중고 거래 사이트",
+      deployUrl: "https://carrot-market-tawny.vercel.app/",
+      imagePath: "/images/carrot-market.png",
+    }
   ]
 
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -71,7 +65,7 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* 대형 슬라이더 */}
-        <div className="relative h-[70vh] min-h-[500px] mb-12 overflow-hidden">
+        <div className="relative h-[80vh] min-h-[600px] mb-12 overflow-hidden bg-gradient-to-r from-black via-transparent to-black">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -79,15 +73,18 @@ export default function Home() {
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <Image
-                src={project.imagePath}
-                alt={`${project.title} 미리보기`}
-                layout="fill"
-                objectFit="cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-8">
-                <h2 className="text-4xl font-bold mb-4">{project.title}</h2>
-                <p className="text-xl">{project.description}</p>
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src={project.imagePath}
+                  alt={`${project.title} 미리보기`}
+                  layout="fill"
+                  objectFit="contain"
+                  className="max-w-[95%] max-h-[95%]"
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6">
+                <h2 className="text-3xl font-bold mb-3">{project.title}</h2>
+                <p className="text-lg">{project.description}</p>
               </div>
             </div>
           ))}
@@ -97,7 +94,13 @@ export default function Home() {
           {/* 프로젝트 그리드 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {projects.map((project, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105">
+              <a
+                key={index}
+                href={project.deployUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+              >
                 <Image
                   src={project.imagePath}
                   alt={`${project.title} 미리보기`}
@@ -109,7 +112,7 @@ export default function Home() {
                   <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h2>
                   <p className="text-gray-600 dark:text-gray-300">{project.description}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
@@ -117,13 +120,15 @@ export default function Home() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-16">
             <div className="md:flex">
               <div className="md:flex-shrink-0">
-                <Image
-                  src="/images/your-photo.jpg"
-                  alt="당신의 이름"
-                  width={300}
-                  height={400}
-                  className="h-full w-full object-cover md:w-48"
-                />
+                <div className="relative w-64 h-64 mx-auto my-4 md:m-4 overflow-hidden rounded-full">
+                  <Image
+                    src="/images/me.jpg"
+                    alt="당신의 이름"
+                    width={300}
+                    height={300}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
               </div>
               <div className="p-8">
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">자기소개</h2>
