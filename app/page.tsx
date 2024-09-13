@@ -45,17 +45,17 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-950 text-gray-100">
       {/* 헤더 네비게이션 */}
-      <header className="bg-white dark:bg-gray-800 shadow-md">
+      <header className="bg-gray-900 shadow-md">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-gray-900 dark:text-white">Hugh Studio</span>
+              <span className="text-2xl font-bold text-gray-100">Hugh Studio</span>
             </div>
             <button
               onClick={toggleDarkMode}
-              className="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
+              className="px-4 py-2 rounded-md bg-gray-800 text-gray-200 hover:bg-gray-700 transition-colors duration-300"
             >
               {isDarkMode ? '라이트 모드' : '다크 모드'}
             </button>
@@ -65,12 +65,12 @@ export default function Home() {
 
       <main className="flex-grow">
         {/* 대형 슬라이더 */}
-        <div className="relative h-[80vh] min-h-[600px] mb-12 overflow-hidden bg-gradient-to-r from-black via-transparent to-black">
+        <div className="relative h-[80vh] min-h-[600px] mb-12 overflow-hidden bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
           {projects.map((project, index) => (
             <div
               key={index}
               className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
+                index === currentSlide ? 'opacity-100 animate-fadeIn' : 'opacity-0 animate-fadeOut'
               }`}
             >
               <div className="relative w-full h-full flex items-center justify-center">
@@ -79,10 +79,10 @@ export default function Home() {
                   alt={`${project.title} 미리보기`}
                   layout="fill"
                   objectFit="contain"
-                  className="max-w-[95%] max-h-[95%]"
+                  className="max-w-[95%] max-h-[95%] animate-zoomIn"
                 />
               </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-6">
+              <div className="absolute bottom-0 left-0 right-0 bg-gray-900 bg-opacity-70 text-white p-6">
                 <h2 className="text-3xl font-bold mb-3">{project.title}</h2>
                 <p className="text-lg">{project.description}</p>
               </div>
@@ -99,7 +99,7 @@ export default function Home() {
                 href={project.deployUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl cursor-pointer animate-slideIn"
               >
                 <Image
                   src={project.imagePath}
@@ -109,15 +109,15 @@ export default function Home() {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h2>
-                  <p className="text-gray-600 dark:text-gray-300">{project.description}</p>
+                  <h2 className="text-2xl font-semibold text-white mb-2">{project.title}</h2>
+                  <p className="text-gray-300">{project.description}</p>
                 </div>
               </a>
             ))}
           </div>
 
           {/* 자기소개 섹션 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-16">
+          <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-16">
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <div className="relative w-64 h-64 mx-auto my-4 md:m-4 overflow-hidden rounded-full">
@@ -131,16 +131,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">자기소개</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <h2 className="text-3xl font-bold text-white mb-4">자기소개</h2>
+                <p className="text-gray-300 mb-4">
                   안녕하세요! 저는 [당신의 이름]입니다. [당신의 기술]에 전문성을 가진 열정적인 개발자입니다. 
                   혁신적인 솔루션을 만들고 코드를 통해 아이디어를 실현하는 것을 좋아합니다.
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4">
                   업계에서 [X]년의 경험을 쌓으며, [프로젝트 유형]부터 [다른 프로젝트 유형]까지 다양한 프로젝트를 
                   수행했습니다. 제 목표는 [당신의 목표나 사명]입니다.
                 </p>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-300">
                   코딩을 하지 않을 때는 [당신의 취미나 관심사]를 즐깁니다. 새로운 기술을 배우고 
                   도전적인 프로젝트를 맡는 것을 항상 열망합니다.
                 </p>
@@ -159,17 +159,17 @@ export default function Home() {
               <a
                 key={index}
                 href={item.href}
-                className="group block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-colors duration-300 ease-in-out hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="group block p-6 bg-gray-800 rounded-lg shadow-lg transition-colors duration-300 ease-in-out hover:bg-gray-700"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                <h2 className="text-2xl font-semibold text-gray-100 mb-3 group-hover:text-blue-400">
                   {item.title}{' '}
                   <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                     →
                   </span>
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+                <p className="text-gray-300">{item.description}</p>
               </a>
             ))}
           </div>
@@ -177,12 +177,12 @@ export default function Home() {
       </main>
 
       {/* 푸터 */}
-      <footer className="bg-gray-800 text-white py-8">
+      <footer className="bg-gray-900 text-gray-300 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <h2 className="text-2xl font-bold">Hugh Studio</h2>
-              <p className="mt-2 text-gray-300">디지털 경험을 만들어냅니다</p>
+              <h2 className="text-2xl font-bold text-gray-100">Hugh Studio</h2>
+              <p className="mt-2 text-gray-400">디지털 경험을 만들어냅니다</p>
             </div>
             <nav className="flex flex-wrap justify-center md:justify-end gap-4">
               <a href="#" className="hover:text-blue-400 transition-colors duration-300">홈</a>
@@ -191,7 +191,7 @@ export default function Home() {
               <a href="#" className="hover:text-blue-400 transition-colors duration-300">연락처</a>
             </nav>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
             <p>&copy; {new Date().getFullYear()} Hugh Studio. 모든 권리 보유.</p>
           </div>
         </div>
